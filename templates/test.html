@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кибер-тест | 10 вопросов</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container animate-fade">
+        <header>
+            <h1>КОМПЛЕКСНОЕ ТЕСТИРОВАНИЕ</h1>
+            <p>Ответьте на 10 вопросов для проверки вашей цифровой грамотности</p>
+        </header>
+
+        <main>
+            <form action="/result" method="POST" class="card" style="cursor: default; padding: 30px;">
+                
+                <!-- 1. Менеджеры паролей -->
+                <div style="margin-bottom: 25px;">
+                    <h3 style="color: #00f2fe; margin-bottom: 10px; font-size: 1.1rem;">1. Где безопаснее всего хранить сложные пароли от аккаунтов?</h3>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q1" value="0" required> В текстовом файле на рабочем столе ПК.</label>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q1" value="1"> В зашифрованном локальном или облачном менеджере паролей.</label>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q1" value="0"> В скрытом чате (избранном) в мессенджере.</label>
+                </div>
+
+                <!-- 2. Двухфакторная аутентификация -->
+                <div style="margin-bottom: 25px;">
+                    <h3 style="color: #00f2fe; margin-bottom: 10px; font-size: 1.1rem;">2. Зачем нужна двухфакторная аутентификация (2FA)?</h3>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q2" value="0" required> Чтобы быстрее заходить на сайт без ввода логина.</label>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q2" value="1"> Чтобы защитить аккаунт, даже если злоумышленник узнал ваш пароль.</label>
+                </div>
+
+                <!-- 3. Социальная инженерия -->
+                <div style="margin-bottom: 25px;">
+                    <h3 style="color: #00f2fe; margin-bottom: 10px; font-size: 1.1rem;">3. Друг прислал ссылку в соцсети: «Проголосуй за меня в конкурсе рисунков!». Что делать?</h3>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q3" value="0" required> Сразу перейти и проголосовать — нужно помогать друзьям.</label>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q3" value="1"> Написать ему в другом мессенджере или позвонить, чтобы убедиться, что его не взломали.</label>
+                </div>
+
+                <!-- 4. Безопасность протоколов -->
+                <div style="margin-bottom: 25px;">
+                    <h3 style="color: #00f2fe; margin-bottom: 10px; font-size: 1.1rem;">4. Какой префикс в адресной строке браузера указывает на безопасное зашифрованное соединение?</h3>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q4" value="0" required> http://</label>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q4" value="1"> https://</label>
+                </div>
+
+                <!-- 5. Вирусы и файлы -->
+                <div style="margin-bottom: 25px;">
+                    <h3 style="color: #00f2fe; margin-bottom: 10px; font-size: 1.1rem;">5. Какое расширение файла скачанного реферата должно вызвать у вас максимальное подозрение?</h3>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q5" value="0" required> .docx или .pdf</label>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q5" value="1"> .exe или .scr</label>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q5" value="0"> .txt или .rtf</label>
+                </div>
+
+                <!-- 6. Публичный Wi-Fi -->
+                <div style="margin-bottom: 25px;">
+                    <h3 style="color: #00f2fe; margin-bottom: 10px; font-size: 1.1rem;">6. Вы подключились к бесплатному открытому Wi-Fi в кафе. Какое действие безопасно?</h3>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q6" value="0" required> Войти в личный кабинет мобильного банка и оплатить счет.</label>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q6" value="0"> Поменять пароль от почты, так как старый показался ненадежным.</label>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q6" value="1"> Искать общую информацию в поисковике (погода, новости) без ввода паролей.</label>
+                </div>
+
+                <!-- 7. Резервное копирование -->
+                <div style="margin-bottom: 25px;">
+                    <h3 style="color: #00f2fe; margin-bottom: 10px; font-size: 1.1rem;">7. Как лучше всего защитить свои файлы (фото, документы) от вирусов-вымогателей (шифровальщиков)?</h3>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q7" value="1" required> Регулярно делать резервные копии (бэкапы) на внешний отключенный жесткий диск.</label>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q7" value="0"> Поставить на файлы атрибут "Только для чтения".</label>
+                </div>
+
+                <!-- 8. Телефонное мошенничество -->
+                <div style="margin-bottom: 25px;">
+                    <h3 style="color: #00f2fe; margin-bottom: 10px; font-size: 1.1rem;">8. Вам звонят якобы из «службы безопасности банка» или «полиции» и просят перевести деньги на «безопасный счет». Что делать?</h3>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q8" value="0" required> Выполнить требования, ведь они называют меня по имени-отчеству.</label>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q8" value="1"> Положить трубку и самостоятельно перезвонить по официальному номеру организации на карте.</label>
+                </div>
+
+                <!-- 9. Умные устройства (IoT) -->
+                <div style="margin-bottom: 25px;">
+                    <h3 style="color: #00f2fe; margin-bottom: 10px; font-size: 1.1rem;">9. Купили новый домашний Wi-Fi роутер или умную камеру. Какое действие нужно сделать в первую очередь?</h3>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q9" value="1" required> Изменить стандартный (заводской) пароль администратора (admin/admin).</label>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q9" value="0"> Просто включить в розетку, производитель уже все защитил.</label>
+                </div>
+
+                <!-- 10. Биометрия и Новые технологии -->
+                <div style="margin-bottom: 25px;">
+                    <h3 style="color: #00f2fe; margin-bottom: 10px; font-size: 1.1rem;">10. Что такое «дипфейк» (Deepfake) в контексте интернет-угроз?</h3>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q10" value="0" required> Вирус, который делает скриншоты вашего экрана без вашего ведома.</label>
+                    <label style="display: block; margin: 8px 0; color: #94a3b8; cursor: pointer;"><input type="radio" name="q10" value="1"> Технология подделки лица или голоса на видео/аудио для обмана людей и систем защиты.</label>
+                </div>
+
+                <div style="text-align: center; margin-top: 35px;">
+                    <button type="submit" class="cta-btn" style="border: none; cursor: pointer;">Отправить ответы в Python</button>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

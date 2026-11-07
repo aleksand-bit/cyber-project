@@ -1,0 +1,123 @@
+@import url('https://googleapis.com');
+
+* { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease-in-out; }
+body { font-family: 'Montserrat', sans-serif; background: radial-gradient(circle at top right, #1a1a2e, #0f0c1b); color: #e2e8f0; min-height: 100vh; padding: 40px 20px; overflow-x: hidden; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade { animation: fadeInUp 0.8s ease forwards; }
+header { text-align: center; margin-bottom: 50px; }
+header h1 { font-size: 2.8rem; font-weight: 800; background: linear-gradient(45deg, #00f2fe, #4facfe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+header p { font-family: 'JetBrains Mono', monospace; color: #00f2fe; letter-spacing: 2px; }
+.container { max-width: 900px; margin: 0 auto; }
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 40px; }
+.card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 16px; padding: 30px; cursor: pointer; }
+.card:hover { transform: translateY(-8px); background: rgba(0, 242, 254, 0.05); border-color: #00f2fe; box-shadow: 0 10px 30px rgba(0, 242, 254, 0.2); }
+.card h3 { color: #00f2fe; margin-bottom: 15px; font-size: 1.3rem; }
+.card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; }
+.cta-btn { display: inline-block; padding: 15px 40px; background: linear-gradient(45deg, #00f2fe, #4facfe); color: #0f0c1b; font-weight: 700; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3); text-align: center; }
+.cta-btn:hover { box-shadow: 0 6px 25px rgba(0, 242, 254, 0.6); transform: scale(1.05); }
+
+/* РАДАР И ЛОГИ */
+.cyber-monitor-box { display: flex; gap: 20px; background: #09070f; border: 1px solid #00f2fe; border-radius: 16px; padding: 20px; margin: 30px 0; box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.1); align-items: center; }
+.radar-container { position: relative; width: 120px; height: 120px; background: radial-gradient(circle, rgba(0, 242, 254, 0.05) 0%, rgba(0, 0, 0, 0.8) 100%); border: 2px solid rgba(0, 242, 254, 0.3); border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+.radar-container::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(0,242,254,0.4) 0%, rgba(0,0,0,0) 50%); transform-origin: center; animation: radar-spin 4s linear infinite; }
+.radar-grid { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70%; height: 70%; border: 1px dashed rgba(0, 242, 254, 0.2); border-radius: 50%; }
+@keyframes radar-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.map-terminal { flex-grow: 1; font-family: 'JetBrains Mono', monospace; height: 120px; overflow-y: hidden; color: #38bdf8; display: flex; flex-direction: column; justify-content: flex-end; }
+.log-line { margin-bottom: 4px; font-size: 0.8rem; white-space: nowrap; }
+
+/* ИНТЕРФЕЙСЫ ФИЧ */
+input[type="range"] { width: 100%; margin: 15px 0; accent-color: #00f2fe; }
+input[type="password"] { width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: white; font-family: 'JetBrains Mono', monospace; outline: none; margin-top: 10px; }
+.password-output { background: rgba(0, 242, 254, 0.05); padding: 15px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #00f2fe; text-align: center; margin: 15px 0; border: 1px dashed #00f2fe; }
+.strength-meter { height: 6px; width: 100%; background: #2d3748; border-radius: 4px; margin-top: 10px; overflow: hidden; }
+.strength-bar { height: 100%; width: 0%; background: #e53e3e; }
+.checkbox-item, .game-option { display: flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.02); padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid rgba(255, 255, 255, 0.05); cursor: pointer; }
+.checkbox-item input { accent-color: #00f2fe; }
+.game-option:hover { background: rgba(0, 242, 254, 0.05); border-color: rgba(0, 242, 254, 0.3); }
+.game-option.correct { border-color: #48bb78 !important; background: rgba(72, 187, 120, 0.1) !important; }
+.game-option.wrong { border-color: #f56565 !important; background: rgba(245, 101, 101, 0.1) !important; }
+.progress-container { margin-top: 15px; font-weight: bold; color: #00f2fe; }
+
+/* СИМУЛЯТОР АТАКИ */
+.hack-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(10, 5, 20, 0.95); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: 'JetBrains Mono', monospace; opacity: 0; pointer-events: none; }
+.hack-screen.active { opacity: 1; pointer-events: auto; }
+.matrix-text { color: #00f2fe; font-size: 1.5rem; text-shadow: 0 0 10px #00f2fe; margin-bottom: 20px; }
+/* --- СТИЛИ ДЛЯ ИНФОРМАЦИОННЫХ БЛОКОВ --- */
+.tabs-container {
+    margin: 40px 0;
+}
+.tabs-menu {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+.tab-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.tab-button:hover, .tab-button.active {
+    background: rgba(0, 242, 254, 0.1);
+    border-color: #00f2fe;
+    color: #00f2fe;
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+}
+.tab-content {
+    display: none;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 25px;
+    line-height: 1.6;
+}
+.tab-content.active {
+    display: block;
+    animation: fadeInUp 0.4s ease;
+}
+.tab-content h4 {
+    color: #00f2fe;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.tab-content ul {
+    margin-top: 10px;
+    padding-left: 20px;
+    color: #94a3b8;
+}
+
+/* Стили для памятки спасения */
+.sos-box {
+    background: linear-gradient(135deg, rgba(245, 101, 101, 0.05) 0%, rgba(10, 5, 20, 0.8) 100%);
+    border: 1px solid #f56565;
+    border-radius: 16px;
+    padding: 30px;
+    margin: 40px 0;
+    box-shadow: 0 10px 30px rgba(245, 101, 101, 0.05);
+}
+.sos-step {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    align-items: flex-start;
+}
+.sos-num {
+    background: #f56565;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+}
+

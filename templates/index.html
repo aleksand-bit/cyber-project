@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кибербезопасность | Проект 10 класса</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- СИМУЛЯТОР АТАКИ (НАША НОВАЯ КРУТАЯ ФИЧА) -->
+    <div class="hack-screen" id="hack-overlay">
+        <div class="matrix-text" id="hack-status">⚠️ ВНИМАНИЕ: ОБНАРУЖЕНА ИНЪЕКЦИЯ КОДА...</div>
+        <div id="hack-console" style="color: #f56565; width: 80%; max-width: 600px; height: 200px; overflow: hidden; font-size: 0.9rem;"></div>
+    </div>
+
+    <div class="container animate-fade">
+        <header>
+            <h1>ЦИФРОВАЯ ГИГИЕНА</h1>
+            <p>Как защитить свои данные в интернете</p>
+        </header>
+
+        <main>
+            <!-- БАЗОВЫЕ КАРТОЧКИ -->
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>01. Сложные пароли</h3>
+                    <p>Используйте уникальные пароли от 12 символов, включая цифры, знаки и разный регистр букв.</p>
+                </div>
+                <div class="card">
+                    <h3>02. Двухфакторная аутентификация</h3>
+                    <p>Защита аккаунта с помощью дополнительного подтверждения через код в SMS или приложении.</p>
+                </div>
+                <div class="card">
+                    <h3>03. Фишинг и ссылки</h3>
+                    <p>Внимательно проверяйте доменное имя сайтов, не переходите по ссылкам от незнакомцев.</p>
+                </div>
+                <div class="card">
+                    <h3>04. Уязвимости Wi-Fi</h3>
+                    <p>Не передавайте конфиденциальную информацию и пароли через незащищенные общественные сети.</p>
+                </div>
+            </div>
+
+            <!-- ИДЕЯ 1 (ОБНОВЛЕННАЯ): МОНИТОРИНГ КИБЕРУГРОЗ С РАДАРОМ -->
+            <h2 style="color: #00f2fe; margin: 40px 0 15px 0; text-align: center; font-size: 1.6rem;">Система обнаружения вторжений (IDS)</h2>
+            <div class="cyber-monitor-box">
+                <div class="radar-container">
+                    <div class="radar-grid"></div>
+                </div>
+                <div class="map-terminal" id="cyber-logs">
+                    <div class="log-line" style="color: #48bb78;">[SYSTEM] Запуск ядра безопасности ядра Python-Flask... OK</div>
+                </div>
+            </div>
+
+            <!-- КНОПКА ЗАПУСКА ТЕСТА И КНОПКА СИМУЛЯЦИИ ХАКЕРСКОЙ АТАКИ -->
+            <div style="text-align: center; margin: 30px 0; display: flex; justify-content: center; gap: 20px;">
+                <a href="/test" class="cta-btn">Пройти полный кибер-тест</a>
+                <button class="cta-btn" id="simulate-hack-btn" style="background: linear-gradient(45deg, #f56565, #ed64a6); border: none; cursor: pointer; color: white; box-shadow: 0 4px 15px rgba(245, 101, 101, 0.3);">Симулировать кибератаку</button>
+            </div>
+            <!-- НОВАЯ СЕКЦИЯ: АНАТОМИЯ УГРОЗ (ТАБЫ) -->
+            <div class="tabs-container">
+                <h2 style="color: #00f2fe; margin-bottom: 20px; text-align: center; font-size: 1.6rem;">Анатомия современных киберугроз</h2>
+                
+                <div class="tabs-menu">
+                    <button class="tab-button active" onclick="openTab(event, 'threat-phishing')">Фишинг 2.0</button>
+                    <button class="tab-button" onclick="openTab(event, 'threat-socio')">Социальная инженерия</button>
+                    <button class="tab-button" onclick="openTab(event, 'threat-fake')">Дипфейки</button>
+                    <button class="tab-button" onclick="openTab(event, 'threat-leak')">Утечки баз данных</button>
+                </div>
+
+                <div id="threat-phishing" class="tab-content active">
+                    <h4>Фишинг: Подделка реальности</h4>
+                    <p>Современный фишинг вышел далеко за рамки кривых писем со спамом. Сегодня мошенники создают идеальные копии экранов авторизации банков, Госуслуг и Telegram, используя схожие символы в адресах (например, <code>госуслугн.рф</code> вместо <code>госуслуги.рф</code>).</p>
+                    <ul>
+                        <li><strong>Вектор атаки:</strong> SMS с пугающим текстом о штрафах или блокировке карт, фейковые боты розыгрышей.</li>
+                        <li><strong>Метод защиты:</strong> Проверка SSL-сертификата (замочек в браузере) и ручной ввод адреса сайта.</li>
+                    </ul>
+                </div>
+
+                <div id="threat-socio" class="tab-content">
+                    <h4>Социальная инженерия: Взлом человека, а не системы</h4>
+                    <p>Психологическое манипулирование с целью заставить жертву добровольно отдать пароли или деньги. Злоумышленники используют триггеры: **страх** (звонок от «МВД»), **срочность** («аккаунт заблокируют через 5 минут») или **жадность** («вы выиграли грант»).</p>
+                    <ul>
+                        <li><strong>Вектор атаки:</strong> Телефонные звонки в мессенджерах, сообщения от взломанных аккаунтов ваших близких с просьбой занять денег.</li>
+                        <li><strong>Метод защиты:</strong> Всегда брать паузу, вешать трубку и перезванивать человеку лично.</li>
+                    </ul>
+                </div>
+
+                <div id="threat-fake" class="tab-content">
+                    <h4>Дипфейки: Видео- и аудиообман</h4>
+                    <p>Использование искусственного интеллекта для подделки голоса или лица. Мошенники могут взять короткий голосовой образец человека из соцсетей, сгенерировать аудиосообщение и отправить его родителям с просьбой срочно перевести деньги.</p>
+                    <ul>
+                        <li><strong>Вектор атаки:</strong> Голосовые сообщения в Telegram, фейковые видеозвонки низкого качества.</li>
+                        <li><strong>Метод защиты:</strong> Задать собеседнику контрольный вопрос, ответ на который знаете только вы двоя (например: «Как зовут нашу собаку?»).</li>
+                    </ul>
+                </div>
+
+                <div id="threat-leak" class="tab-content">
+                    <h4>Утечки данных: Следствие чужих ошибок</h4>
+                    <p>Даже если ваш ПК защищен, базы данных интернет-магазинов, доставок еды или онлайн-школ регулярно утекают в сеть. Хакеры собирают из этих утечек полные досье: ФИО, адреса, телефоны и старые пароли.</p>
+                    <ul>
+                        <li><strong>Вектор атаки:</strong> Подбор паролей к другим вашим аккаунтам (если они одинаковые), таргетированный фишинг.</li>
+                        <li><strong>Метод защиты:</strong> Никогда не использовать один пароль для двух разных сайтов.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- НОВАЯ СЕКЦИЯ: SOS ПАМЯТКА -->
+            <div class="sos-box">
+                <h2 style="color: #f56565; font-size: 1.5rem; margin-bottom: 10px;">🚨 План действий: Что делать, если вас взломали?</h2>
+                <p style="color: #e2e8f0; font-size: 0.95rem;">Если вы поняли, что ввели пароль на фишинговом сайте или потеряли доступ к профилю, действуйте мгновенно:</p>
+                
+                <div class="sos-step">
+                    <div class="sos-num">1</div>
+                    <div>
+                        <strong style="color: white;">Завершите активные сессии:</strong> Зайдите в настройки безопасности взломанного сервиса (Telegram, VK, Почта) и нажмите «Завершить все остальные сеансы/устройства».
+                    </div>
+                </div>
+                
+                <div class="sos-step">
+                    <div class="sos-num">2</div>
+                    <div>
+                        <strong style="color: white;">Смените пароль:</strong> Установите новый сложный пароль. Если этот же пароль использовался на других сайтах — немедленно поменяйте его и там.
+                    </div>
+                </div>
+
+                <div class="sos-step">
+                    <div class="sos-num">3</div>
+                    <div>
+                        <strong style="color: white;">Проверьте привязки:</strong> Убедитесь, что хакеры не успели привязать к вашему аккаунту чужую резервную почту или другой номер телефона.
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- МОДУЛИ: ГЕНЕРАТОР И КАЛЬКУЛЯТОР СЛОЖНОСТИ -->
+            <div class="grid-cards" style="margin-top: 40px;">
+                <div class="card" style="cursor: default;">
+                    <h3>Генератор безопасных паролей</h3>
+                    <div class="password-output" id="pass-display">Нажмите «Сгенерировать»</div>
+                    <label>Длина структуры: <span id="length-val">12</span> символов</label>
+                    <input type="range" id="pass-length" min="8" max="20" value="12">
+                    <button class="cta-btn" id="gen-btn" style="width: 100%; border: none; cursor: pointer; padding: 12px; margin-top: 10px;">Сгенерировать</button>
+                </div>
+
+                <div class="card" style="cursor: default;">
+                    <h3>Анализатор прочности пароля</h3>
+                    <input type="password" id="password-input" placeholder="Введите ваш текущий пароль...">
+                    <div class="strength-meter">
+                        <div class="strength-bar" id="strength-bar"></div>
+                    </div>
+                    <p id="strength-text" style="margin-top: 15px; font-size: 0.85rem; color: #94a3b8;">Ожидание ввода данных...</p>
+                </div>
+            </div>
+
+            <!-- МОДУЛИ: РАСШИРЕННЫЙ ТРЕНАЖЕР ФИШИНГА И ЧЕК-ЛИСТ -->
+            <div class="grid-cards" style="margin-top: 25px;">
+                
+                <!-- ИДЕЯ 3 (ОБНОВЛЕННАЯ): МНОГОШАГОВЫЙ ТРЕНАЖЕР ФИШИНГА -->
+                <div class="card" style="cursor: default;" id="phishing-box">
+                    <h3>Интерактивный тренажер фишинга</h3>
+                    <div id="trainer-content" style="margin-top: 15px;">
+                        <!-- Контент генерируется скриптом динамически -->
+                    </div>
+                </div>
+
+                <div class="card" style="cursor: default;">
+                    <h3>Аудит личной безопасности</h3>
+                    <div class="checkbox-item"><input type="checkbox" class="check-secure"> Двухфакторная защита на Госуслугах</div>
+                    <div class="checkbox-item"><input type="checkbox" class="check-secure"> Уникальный пароль для каждой соцсети</div>
+                    <div class="checkbox-item"><input type="checkbox" class="check-secure"> VPN включен при использовании публичного Wi-Fi</div>
+                    <div class="checkbox-item"><input type="checkbox" class="check-secure"> Запрет на автосохранение паролей в браузерах</div>
+                    <div class="progress-container">Ваш индекс кибергигиены: <span id="secure-percent">0</span>%</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

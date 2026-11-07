@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ваш результат</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container animate-fade">
+        <header>
+            <h1>ИТОГИ ТЕСТИРОВАНИЯ</h1>
+            <p>Ваш уровень цифровой грамотности</p>
+        </header>
+
+        <main style="text-align: center;">
+            <div class="card" style="cursor: default; margin-bottom: 40px;">
+                <!-- Выводим статус, который передал Python -->
+                <h2 style="color: #00f2fe; font-size: 2rem; margin-bottom: 20px;">{{ status }}</h2>
+                <!-- Переменная score теперь будет красиво выводиться из 10 -->
+                <p style="font-size: 1.2rem; color: #e2e8f0; margin-bottom: 15px;">Вы набрали правильных ответов: <strong>{{ score }} из 10</strong></p>
+                <p style="color: #94a3b8; line-height: 1.6;">{{ desc }}</p>
+            </div>
+
+            <a href="/" class="cta-btn">На главную</a>
+        </main>
+    </div>
+</body>
+</html>
